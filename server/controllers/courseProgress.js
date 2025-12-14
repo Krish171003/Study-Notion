@@ -9,12 +9,13 @@ exports.updateCourseProgress = async (req, res) => {
   const userId = req.user.id
 
   try {
+    // Check if the subsection is valid
     const subsection = await SubSection.findById(subsectionId)
     if (!subsection) {
       return res.status(404).json({ error: "Invalid subsection" })
     }
 
-  
+    // Find the course progress document for the user and course
     let courseProgress = await CourseProgress.findOne({
       courseID: courseId,
       userId: userId,
@@ -27,7 +28,7 @@ exports.updateCourseProgress = async (req, res) => {
         message: "Course progress Does Not Exist",
       })
     } else {
-  
+      // If course progress exists, check if the subsection is already completed
       if (courseProgress.completedVideos.includes(subsectionId)) {
         return res.status(400).json({ error: "Subsection already completed" })
       }

@@ -2,6 +2,7 @@
 const express = require("express")
 const router = express.Router()
 
+// Import the Controllers
 
 // Course Controllers Import
 const {
@@ -36,6 +37,7 @@ const {
   deleteSubSection,
 } = require("../controllers/Subsection")
 
+// Rating Controllers Import
 const {
   createRating,
   getAverageRating,

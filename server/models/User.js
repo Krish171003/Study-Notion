@@ -1,8 +1,10 @@
+// Import the Mongoose library
 const mongoose = require("mongoose");
 
 // Define the user schema using the Mongoose Schema constructor
 const userSchema = new mongoose.Schema(
 	{
+		// Define the name field with type String, required, and trimmed
 		firstName: {
 			type: String,
 			required: true,
@@ -58,6 +60,7 @@ const userSchema = new mongoose.Schema(
 		},
 		image: {
 			type: String,
+			required: true,
 		},
 		courseProgress: [
 			{
@@ -66,6 +69,7 @@ const userSchema = new mongoose.Schema(
 			},
 		],
 
+		// Add timestamps for when the document is created and last modified
 	},
 	{ timestamps: true }
 );

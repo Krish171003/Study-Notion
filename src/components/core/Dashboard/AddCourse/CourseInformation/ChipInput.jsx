@@ -1,6 +1,6 @@
-
+// Importing React hook for managing component state
 import { useEffect, useState } from "react"
-
+// Importing React icon component
 import { MdClose } from "react-icons/md"
 import { useSelector } from "react-redux"
 
@@ -26,11 +26,12 @@ export default function ChipInput({
       setChips(course?.tag)
     }
     register(name, { required: true, validate: (value) => value.length > 0 })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     setValue(name, chips)
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chips])
 
   // Function to handle user input when chips are added
@@ -41,7 +42,7 @@ export default function ChipInput({
       event.preventDefault()
       // Get the input value and remove any leading/trailing spaces
       const chipValue = event.target.value.trim()
-      
+      // Check if the input value exists and is not already in the chips array
       if (chipValue && !chips.includes(chipValue)) {
         // Add the chip to the array and clear the input
         const newChips = [...chips, chipValue]
@@ -85,6 +86,7 @@ export default function ChipInput({
             </button>
           </div>
         ))}
+        {/* Render the input for adding new chips */}
         <input
           id={name}
           name={name}
@@ -94,6 +96,7 @@ export default function ChipInput({
           className="form-style w-full"
         />
       </div>
+      {/* Render an error message if the input is required and not filled */}
       {errors[name] && (
         <span className="ml-2 text-xs tracking-wide text-pink-200">
           {label} is required

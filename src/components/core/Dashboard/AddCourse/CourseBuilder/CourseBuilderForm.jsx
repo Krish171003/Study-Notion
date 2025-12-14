@@ -104,11 +104,9 @@ export default function CourseBuilderForm() {
       <p className="text-2xl font-semibold text-richblack-5">Course Builder</p>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="flex flex-col space-y-2">
-
           <label className="text-sm text-richblack-5" htmlFor="sectionName">
             Section Name <sup className="text-pink-200">*</sup>
           </label>
-          
           <input
             id="sectionName"
             disabled={loading}

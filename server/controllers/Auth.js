@@ -9,9 +9,10 @@ const Profile = require("../models/Profile")
 require("dotenv").config()
 
 // Signup Controller for Registering USers
+
 exports.signup = async (req, res) => {
   try {
-    // Body se Data nikal lo (body se lelo)
+    // Destructure fields from the request body
     const {
       firstName,
       lastName,
@@ -22,7 +23,7 @@ exports.signup = async (req, res) => {
       contactNumber,
       otp,
     } = req.body
-    //validate kar liya 
+    // Check if All Details are there or not
     if (
       !firstName ||
       !lastName ||
@@ -114,10 +115,10 @@ exports.signup = async (req, res) => {
 // Login controller for authenticating users
 exports.login = async (req, res) => {
   try {
-    // gmail && password nikal lo
+    // Get email and password from request body
     const { email, password } = req.body
 
-    // validate karlo
+    // Check if email or password is missing
     if (!email || !password) {
       // Return 400 Bad Request status code with error message
       return res.status(400).json({
@@ -125,10 +126,11 @@ exports.login = async (req, res) => {
         message: `Please Fill up All the Required Fields`,
       })
     }
-    // user find karlo -> DB meh Daldo -> baki details lelo user ki
+
+    // Find user with provided email
     const user = await User.findOne({ email }).populate("additionalDetails")
 
-    // pehle signup karlo
+    // If user not found with provided email
     if (!user) {
       // Return 401 Unauthorized status code with error message
       return res.status(401).json({
