@@ -14,7 +14,7 @@ const otpSchema = new Schema<IOTP>({
   createdAt: {
     type: Date,
     default: Date.now,
-    expires: 60 * 5, // 5 minutes
+    expires: 60 * 5,
   },
 });
 
